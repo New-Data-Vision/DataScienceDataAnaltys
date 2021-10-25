@@ -20,7 +20,7 @@ def app():
 
     delite_temp_user(res)
     create_DCTAS()
-    col1,col2 = st.beta_columns(2)
+    col1,col2 = st.columns(2)
     with col1:
                             
         st.info(" For restart data you must delete data and start over !!!")

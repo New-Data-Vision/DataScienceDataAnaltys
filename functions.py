@@ -17,7 +17,7 @@ import base64
 import io
 from io import BytesIO
 from PIL import Image
-coef = 'file.txt'
+coef = 'datas/file.txt'
 
 def png_bytes_to_numpy(png):
     return np.array(Image.open(BytesIO(png)))
@@ -116,7 +116,7 @@ def GETCoefficients(files,year):
 
     np_specific_coefficient = np_koef[np_years == year]
     #print("\n\t You have chosen a year :  ",i)
-
+    st.write("np_specific_coefficient",type(np_specific_coefficient))
     return np_specific_coefficient
 
 def NumberOfRows(datFrame): # for data frame

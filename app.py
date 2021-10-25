@@ -1,5 +1,8 @@
 
 import streamlit as st
+import sqlite3
+from database import*
+import pandas as pd
 
 
 from multiapp import MultiApp

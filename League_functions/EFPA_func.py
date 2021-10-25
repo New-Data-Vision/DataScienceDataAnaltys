@@ -163,7 +163,7 @@ def EFPA_MAIN(DFrame):
     # ,"Year_of_Season statistic","Nationality statistic"
 
 
-    # colums,col2 = st.beta_columns(2)
+    # colums,col2 = st.columns(2)
 
     # with colums:
     flag = 0
