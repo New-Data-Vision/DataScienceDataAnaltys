@@ -103,31 +103,34 @@ def app():
                 add_if_key_not_exist(d,j,Total)
 
 
-        df = pd.read_sql_query('SELECT * FROM blog_table_temp_MAIN',conn)
-        df_new = df[['id_post','author','user_id','title','article','img','postdate']]
-        a = df_new['id_post'].unique() 
-        lista =[]
-        for i in a:
-            lista.append(i)
-        caching.clear_cache()
-        for j in user_lista:
-            df = pd.read_sql_query('SELECT * FROM blog_table_temp_MAIN WHERE user_id = "{}"'.format(int(j)),conn)
-            for i in lista:
-                df_print = pd.read_sql_query('SELECT * FROM blog_table_temp_MAIN WHERE user_id = "{}" AND id_post = "{}"'.format(int(j),int(i)),conn)
-                df_a_d_t = pd.read_sql_query('SELECT DISTINCT title,author,postdate FROM blog_table_temp_MAIN WHERE user_id = "{}" AND id_post = "{}"'.format(int(j),int(i)),conn)
-                if df_a_d_t.empty != True :             
-                    temp_reading_time = d.get(i)
-                    st.markdown(head_message_temp.format(df_a_d_t['title'][0],df_a_d_t['author'][0],df_a_d_t['postdate'][0],temp_reading_time),unsafe_allow_html=True)
-                    for i in range(0,len(df_print)):
-                        if type(df_print['img'][i]) != str and df_print['img'][i] != None:
-                            test = np.frombuffer(df_print['img'][i], dtype=np.uint8)
-                            opencv_image = cv2.imdecode(test, 1)
-                            st.image(opencv_image, channels="BGR")
-                        elif type(df_print['article'][i]) == str and df_print['article'][i] != None:
-                            st.markdown(full_message_temp.format(df_print['article'][i]),unsafe_allow_html=True)
+        df_title = pd.read_sql_query('SELECT title FROM blog_table_temp_MAIN',conn)
+        temp_title = df_title['title'].unique() 
+        title_lista =[]
+        for i in temp_title:
+            title_lista.append(i)
+
+        df_title_temp = pd.read_sql_query('SELECT id_post,user_id FROM blog_table_temp_MAIN ',conn)
+
+        j = df_title_temp['user_id'][0]
+        i = df_title_temp['id_post'][0]
+        df_title = pd.read_sql_query('SELECT * FROM blog_table_temp_MAIN WHERE user_id = "{}" AND id_post = "{}"'.format(int(j),int(i)),conn)
+        df_a_d_t = pd.read_sql_query('SELECT DISTINCT title,author,postdate FROM blog_table_temp_MAIN WHERE user_id = "{}" AND id_post = "{}"'.format(int(j),int(i)),conn)
+        if df_a_d_t.empty != True :
+            temp_reading_time = d.get(i)
+            st.markdown(head_message_temp.format(df_a_d_t['title'][0],df_a_d_t['author'][0],df_a_d_t['postdate'][0],temp_reading_time),unsafe_allow_html=True)
+            for i in range(0,len(df_title)):
+                if df_title['img'][i] != None:
+                    data = df_title['img'][i]
+                    h = int(df_title['h'][i])
+                    w = int(df_title['w'][i])
+                    nova_lista = marshal.loads(data)  
+                    arr = np.array(nova_lista)                            
+                    oimg = convert_bytes_to_img(w,h,arr)
+                    st.image(oimg)
+                elif type(df_title['article'][i]) == str and df_title['article'][i] != None:
+                    st.markdown(full_message_temp.format(df_title['article'][i]),unsafe_allow_html=True)
 
 
-        caching.clear_cache()
 
     if st.checkbox(" Take look and see some awesome interactive dashboard !! "):
         st.info("Still update !!!")
