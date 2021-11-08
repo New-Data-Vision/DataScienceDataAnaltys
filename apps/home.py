@@ -173,7 +173,7 @@ def app():
         
         if st.checkbox(" League Expenditures  "):
 
-            te = int(2)
+            te = int(1)
             flag = return_id_EFPA_table(te)
             if flag != []:
                 if int(te) > 0:
@@ -326,7 +326,7 @@ def app():
 
         if st.checkbox(" Leagues Incomes  "):
 
-            te = int(2)
+            te = int(1)
             flag = return_id_IFPD_table(te)
             if flag != []:
                 if int(te) > 0:
@@ -482,7 +482,7 @@ def app():
 
         if st.checkbox(" Clubs Expenditures  "):
 
-            te = int(2)
+            te = int(1)
             flag = return_id_CDWS_table(te)
             if flag != []:
                 if int(te) > 0:
