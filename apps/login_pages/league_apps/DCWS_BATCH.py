@@ -12,7 +12,8 @@ import time
 
 def app():
     create_DCWS_BATCH()
-    st.title('2. function DCWS_BATCH  process function')
+    
+    st.title('10. Custom Processed Data by average -> LEAGUE by YEAR statistic')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -94,11 +95,19 @@ def app():
                         df = pd.read_sql('SELECT * FROM DCWS_BATCH_temp', conn)
                         df_save = df[["Year_of_Season","Expend","Income","Balance","number_of_Season","sum_of_Arrivlas","sum_of_Depatrues","avg_Expend_of_Arrivlas","avg_Income_of_Depatrues","avg_Balance_of_Depatrues","avg_Expend_Season","avg_Income_Season","avg_Balance_Season","user_id"]]
                         st.dataframe(df_save)
+                        df = df_save
+                        size = NumberOfRows(df)
+                        size = len(df)
+                        list1 = [0] * size
+                        for i in range(0,size):
+                            list1[i] = int(temp_save)
+                        st.dataframe(df_save)
+                        df_save['user_id'] = list1                        
                         df_save.to_sql('DCWS_BATCH_table',con=conn,if_exists='append')
                         delite_DCWS_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")
+                    st.warning("Please first proces your data")
                     
             
             else:

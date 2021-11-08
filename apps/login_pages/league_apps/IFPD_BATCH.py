@@ -12,7 +12,7 @@ import time
 
 def app():
     create_IFPA_BATCH()
-    st.title('2. function IFPA_BATCH  process function')
+    st.title('4. Custom Processed Data by average league INCOME for player DEPARTURES')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -97,6 +97,13 @@ def app():
                         df = pd.read_sql('SELECT * FROM IFPA_BATCH_temp', conn)
                         df_save = df[["Name_of_Legue", "Year","Nationality", "Income_by_player", "Income_INFLACION"]]
                         st.dataframe(df_save)
+                        df = df_save
+                        size = NumberOfRows(df)
+                        size = len(df)
+                        list1 = [0] * size
+                        for i in range(0,size):
+                            list1[i] = int(temp_save)
+                        df_save['user_id'] = list1
                         df_save.to_sql('IFPA_BATCH_table',con=conn,if_exists='append')
                         delite_IFPA_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
@@ -154,7 +161,7 @@ def app():
                         flag_option = return_id_IFPA__LEAGUE_flag_option(temp_save)
                         #st.write("(flag_option[0])",flag_option[0])
                         temp_filter = ''.join(flag_option[0])
-                        st.write("temp_filter",temp_filter,"type(temp_filter)",type(temp_filter))
+                        #st.write("temp_filter",temp_filter,"type(temp_filter)",type(temp_filter))
                         if flag_option !=[]:
                             if temp_filter == 'LEAUGE':
                                 temp_option = "Name_of_Legue"

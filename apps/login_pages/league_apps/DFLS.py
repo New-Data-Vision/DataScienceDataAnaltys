@@ -11,7 +11,7 @@ import time
 
 def app():
     create_DFLS()
-    st.title('1. function IFPA  process function')
+    st.title('7. Processed Data by average LEAGUE by AVG SESONS statistic')
     st.write('Welcome to metrics')
     username = return_username()
 

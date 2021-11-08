@@ -12,7 +12,7 @@ import time
 
 def app():
     create_EFPA_BATCH()
-    st.title('2. function EFPA_BATCH  process function')
+    st.title('2.Custom Processed Data by average league EXPEND for player ARRIVALS')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -90,6 +90,14 @@ def app():
                         df = pd.read_sql('SELECT * FROM EFPA_BATCH_temp', conn)
                         df_save = df[["Name_of_Legue","Year","Nationality","Expend_by_player","Expend_INFLACION"]]
                         st.dataframe(df_save)
+                        df = df_save
+                        size = NumberOfRows(df)
+                        size = len(df)
+                        list1 = [0] * size
+                        for i in range(0,size):
+                            list1[i] = int(temp_save)
+                        df_save['user_id'] = list1
+
                         df_save.to_sql('EFPA_BATCH_table',con=conn,if_exists='append')
                         delite_EFPA_BATCH_temp(temp_save)
                         #delite_IFPA_LEAGUE_flag_option(temp_save)

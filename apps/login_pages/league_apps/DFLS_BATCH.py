@@ -12,7 +12,8 @@ import time
 
 def app():
     create_DFLS_BATCH()
-    st.title('2. function DFLS_BATCH  process function')
+    create_DFLS_LEAGUE_flag_option()
+    st.title('8. Custom Processed Data by average LEAGUE by AVG SESONS statistic')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -93,11 +94,18 @@ def app():
                         df = pd.read_sql('SELECT * FROM DFLS_BATCH_temp', conn)
                         df_save = df[["Name_of_Legue","Expend","Income","Balance","number_of_Season","sum_of_Arrivlas","sum_of_Depatrues","avg_Expend_of_Arrivlas","avg_Income_of_Depatrues","avg_Balance_of_Depatrues","avg_Expend_Season","avg_Income_Season","avg_Balance_Season","user_id"]]
                         st.dataframe(df_save)
+                        df = df_save
+                        size = NumberOfRows(df)
+                        size = len(df)
+                        list1 = [0] * size
+                        for i in range(0,size):
+                            list1[i] = int(temp_save)
+                        df_save['user_id'] = list1                        
                         df_save.to_sql('DFLS_BATCH_table',con=conn,if_exists='append')
                         delite_DFLS_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data") 
+                    st.warning("Please first proces your data") 
             else:
                 st.warning("Record already exisit please first delite datas !!")
 
@@ -137,17 +145,20 @@ def app():
 
         try:
             if st.checkbox("Viusalise data !!!"):
+                st.warning("test")
                 flag = return_id_DFLS_BATCH(temp_save)
+               #st.write("flag",flag)
                 if flag != []:
 
                     if int(temp_save) > 0:
                         flag_option = return_id_DFLS__LEAGUE_flag_option(temp_save)
+                        #st.write("flag_option",flag_option)
                         temp_filter = ''.join(flag_option[0])
                         if flag_option !=[]:
-                            if temp_filter == 'LEAUGE':
+                            if temp_filter == 'Name_of_Legue':
                                 temp_option = "Name_of_Legue"
                                 # 1. Graphs
-                                df = pd.read_sql_query('SELECT * FROM DFLS_BATCH_table WHERE user_id = "{}"'.format(1),conn)
+                                df = pd.read_sql_query('SELECT * FROM DFLS_BATCH_table WHERE user_id = "{}"'.format(temp_save),conn)
                                 df_new = df[["Name_of_Legue","Expend","Income","Balance","number_of_Season","sum_of_Arrivlas","sum_of_Depatrues","avg_Expend_of_Arrivlas","avg_Income_of_Depatrues","avg_Balance_of_Depatrues","avg_Expend_Season","avg_Income_Season","avg_Balance_Season"]]
                                 
                                 st.error("Repayment expenses with inflation rate")
@@ -250,9 +261,9 @@ def app():
                                 ).interactive()
                                 st.altair_chart(c)
 
-                            elif temp_filter == 'Year':
-                                temp_option = "Nationality"
-                                df = pd.read_sql_query('SELECT * FROM DFLS_BATCH_table WHERE user_id = "{}"'.format(1),conn)
+                            elif temp_filter == 'number_of_Season':
+                                temp_option = "number_of_Season"
+                                df = pd.read_sql_query('SELECT * FROM DFLS_BATCH_table WHERE user_id = "{}"'.format(temp_save),conn)
                                 df_new = df[["Name_of_Legue","Expend","Income","Balance","number_of_Season","sum_of_Arrivlas","sum_of_Depatrues","avg_Expend_of_Arrivlas","avg_Income_of_Depatrues","avg_Balance_of_Depatrues","avg_Expend_Season","avg_Income_Season","avg_Balance_Season"]]
                                 st.error("Repayment expenses with inflation rate")
 

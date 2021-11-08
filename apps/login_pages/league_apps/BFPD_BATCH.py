@@ -12,7 +12,7 @@ import time
 
 def app():
     create_BFPD_BATCH()
-    st.title('2. function BFPD_BATCH  process function')
+    st.title('6. Custom Processed Data by average league BALANCE for player DEPARTURES')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -96,11 +96,18 @@ def app():
                         df = pd.read_sql('SELECT * FROM BFPD_BATCH_temp', conn)
                         df_save = df[["Name_of_Legue","Year","Nationality","Balance_by_player","Balance_INFLACION"]]
                         st.dataframe(df_save)
+                        df = df_save
+                        size = NumberOfRows(df)
+                        size = len(df)
+                        list1 = [0] * size
+                        for i in range(0,size):
+                            list1[i] = int(temp_save)
+                        df_save['user_id'] = list1                        
                         df_save.to_sql('BFPD_BATCH_table',con=conn,if_exists='append')
                         delite_BFPD_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")
+                    st.warning("Please first proces your data")
                     
             
             else:

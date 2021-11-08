@@ -12,7 +12,7 @@ import time
 
 def app():
     create_DCTAS_BATCH()
-    st.title('2. function DCTAS_BATCH  process function')
+    st.title('4. Custom Processed Data by Data CLUBS statistic through all   SESONS ')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -96,11 +96,12 @@ def app():
                         df = pd.read_sql('SELECT * FROM DCTAS_BATCH_temp', conn)
                         df_save = df[["Order_of_Expend","Club","State","Competition","Expenditures","Income","Arrivals","Departures","Balance","inflation_Expenditure","inflation_Income","inflation_Balance","user_id"]]
                         st.dataframe(df_save)
+                        
                         df_save.to_sql('DCTAS_BATCH_table',con=conn,if_exists='append')
                         delite_DCTAS_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")
+                    st.warning("Please first proces your data")
                     
             
             else:
@@ -144,9 +145,9 @@ def app():
     # 
                     if int(temp_save) > 0:
                         flag_option = return_id_DCTAS__LEAGUE_flag_option(temp_save)
-                        st.write("i(flag_option[0])",flag_option[0])
+                        #st.write("i(flag_option[0])",flag_option[0])
                         temp_filter = ''.join(flag_option[0])
-                        st.write("temp_filter",temp_filter,"type(temp_filter)",type(temp_filter))
+                        #st.write("temp_filter",temp_filter,"type(temp_filter)",type(temp_filter))
 
                         if flag_option !=[]:
                             if temp_filter == 'State':

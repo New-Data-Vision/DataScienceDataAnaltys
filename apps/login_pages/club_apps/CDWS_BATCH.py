@@ -12,7 +12,7 @@ import time
 
 def app():
     create_CDWS_BATCH()
-    st.title('2. function CDWS_BATCH  process function')
+    st.title('2. Custom Processed Data by Data CLUBS statistic without   SESONS')
     st.write('Welcome to metrics')
     username = return_username()
     i = (username[0])
@@ -100,7 +100,7 @@ def app():
                         delite_CDWS_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")
+                    st.warning("Please first proces your data")
                     
             
             else:
