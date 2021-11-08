@@ -20,7 +20,6 @@ st.markdown("""
 # Add all your application here
 app.add_app("Home", home.app)
 app.add_app("SingUp", SingUp.app)
-#app.add_app("Model", model.app)
 app.add_app("LogIn",LogIn.app)
 app.add_app("Search",Search.app)
 app.add_app("About",About.app)

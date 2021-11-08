@@ -220,7 +220,7 @@ def app():
                             break
                         ##########################################################################################################
                         ##      4. Graph 
-                        st.markdown(html_vizaulazacija3,unsafe_allow_html=True)
+                        st.markdown(html_vizaulazacija4,unsafe_allow_html=True)
                         while True:
                             lines = alt.Chart(df_new).mark_bar(size=25).encode(
                               x=alt.X('Year',axis=alt.Axis(title='date')),
