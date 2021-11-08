@@ -101,7 +101,7 @@ def app():
                         delite_IFPA_BATCH_temp(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")
+                    st.warning("Please first proces your data")
                     
             
             else:

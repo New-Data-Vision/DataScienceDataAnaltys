@@ -62,6 +62,7 @@ def app():
 
 
 
+
     #st.title('View all posts !!!')
     a = " Welcome to the Football data revolution !!"
     b = " Here you are chance to investigate and explore football financial data about leagues and clubs across Europe and the World"
@@ -171,7 +172,7 @@ def app():
 
         
         if st.checkbox(" League Expenditures  "):
-            st.success("Potrošnja liga") 
+
             te = int(2)
             flag = return_id_EFPA_table(te)
             if flag != []:
@@ -324,7 +325,7 @@ def app():
                     st.success("Viusalise  Datas")
 
         if st.checkbox(" Leagues Incomes  "):
-            st.warning("Prihodi liga ")
+
             te = int(2)
             flag = return_id_IFPD_table(te)
             if flag != []:
@@ -480,7 +481,7 @@ def app():
 
 
         if st.checkbox(" Clubs Expenditures  "):
-            st.info("club")   
+
             te = int(2)
             flag = return_id_CDWS_table(te)
             if flag != []:

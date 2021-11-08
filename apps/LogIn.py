@@ -3,14 +3,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sqlite3.dbapi2 import paramstyle
-#import bcrypt
 from functions import *
 from database import *
-import datetime
-import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('Agg')
-#from League_functions.avg_Income_for_player_Departures import  BATCH_for_GetAVGExpendFORplayerArrivals
+
 from functions import DataFrameFunc,NumberOfRows
 from League_functions.EFPA_func import*
 from League_functions.IFPD_func import*
@@ -19,14 +14,11 @@ from League_functions.DFLS_func import*
 from League_functions.DCWS_func import*
 from Club_functions.CDWS_func import*
 from Club_functions.CDTAS_func import*
-import matplotlib.pyplot as plt
-import altair as alt
-#rom bokeh.plotting import figure
-#mport duckdb
-#import subprocess
+
+
+
 from html_temp import *
-import os
-import time
+
 
 #################
 from apps.login_pages import metrics, post

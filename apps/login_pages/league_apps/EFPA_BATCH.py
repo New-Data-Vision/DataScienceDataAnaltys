@@ -95,7 +95,7 @@ def app():
                         #delite_IFPA_LEAGUE_flag_option(temp_save)
                         st.success("Data successfuly saved !")
                 else:
-                    st.warning("Please first proces jour data")   
+                    st.warning("Please first proces your data")   
             else:
                 st.warning("Record already exisit please first delite datas !!")
         # Export datas

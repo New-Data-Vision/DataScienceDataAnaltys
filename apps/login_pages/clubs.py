@@ -17,8 +17,3 @@ def app():
     page.app()
     
 
-    # Custom options for previous function
-
-    #   BATCH Data by Data CLUBS statistic without   SESONS
-
-    #   BATCH Data by Data CLUBS statistic through all   SESONS

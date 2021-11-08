@@ -380,7 +380,7 @@ head_message_temp ="""
 	<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="vertical-align: middle;float:left;width: 50px;height: 50px;border-radius: 50%;">
 	<h4>Author: {} </h4> 		
 	<h4>Post Date: {} </h4>	
-    <h4>Reading time: {} </h4>	
+    <h4>Reading time: {} minutes </h4>	
 	</div>
     """
 
