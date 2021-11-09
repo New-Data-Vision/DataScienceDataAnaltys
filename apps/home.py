@@ -477,6 +477,7 @@ def app():
                                     size = N - 1  
                                 time.sleep(0.1)
                         break
+                    
                     st.success("Viusalise  Datas")
 
 
